@@ -5,5 +5,5 @@
  * @author alarencinas
  *
  */
-module Client {
+module E2_Client {
 }
