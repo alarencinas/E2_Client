@@ -1,7 +1,7 @@
 package client.remote;
 
 import java.rmi.Naming;
-
+import server.remote.IRemoteFacade;
 
 public class ServiceLocator {
 	//Remote Facade reference
