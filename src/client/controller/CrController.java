@@ -47,5 +47,10 @@ public class CrController {
 	public Session createSession(String title, String sport,int distance,Date start,Date end,User Owner,long duration) {
 		return this.serviceLocator.getService().createSession(title, sport, distance, start, end, Owner, duration);
 	}
+	public void signUp(User Owner, Challenge challenge) {
+		
+			this.serviceLocator.getService().signUp(Owner, challenge);
+		
+	}
 		
 }
