@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
+import client.controller.LoginController;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -29,10 +30,15 @@ public class ClientLoginWindow extends JFrame {
 	private JLabel lblPass;
 	private JPasswordField textPass;
 	private JButton btnLogin;
-
+	private LoginController lController;
 	/**
 	 * Launch the application.
 	 */
+	//Methods
+	public boolean login(String email, String password) {
+		System.out.println("Login");
+		return this.lController.login(email, password);
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -89,6 +95,7 @@ public class ClientLoginWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nick = textNick.getText();
 				String pass = textPass.getText();
+				login(nick, pass);
 				//TODO log in to menu windows
 			}
 		});

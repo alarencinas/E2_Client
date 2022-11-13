@@ -15,6 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import client.controller.LoginController;
+import server.data.domain.User;
+
 public class ClientSignUpWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -29,11 +32,14 @@ public class ClientSignUpWindow extends JFrame {
 	private JButton btnRegister;
 	private static JLabel lblLogin;
 	private JButton btnLogin;
-	
+	private LoginController LController;
 
 	/**
 	 * Launch the application.
-	 */
+	 */public User RegisterUser(String nickname,String password) {
+		 User u = LController.RegisterUser(nickname, password);
+		 return u;
+	 }
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -106,7 +112,8 @@ public class ClientSignUpWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nick = textNIck.getText();
 				String mail = textMail.getText();
-				String pass = textPass.getText();	
+				String pass = textPass.getText();
+				RegisterUser(nick, pass);
 				//TODO add info to the client
 			}
 		});

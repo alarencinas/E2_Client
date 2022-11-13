@@ -20,6 +20,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import server.data.domain.Challenge;
+import server.data.domain.Session;
+import server.data.domain.User;
+import server.remote.*;
+import client.controller.*;
 public class ClientChallengeWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -39,10 +44,19 @@ public class ClientChallengeWindow extends JFrame {
 	private JDateChooser calendarStart;
 	private JDateChooser calendarEnd;
 	private SimpleDateFormat sdf;
+	private CrController controller;
 
 	/**
 	 * Launch the application.
 	 */
+	//Methods
+	public Challenge createChallenge(String name,Date start, Date end, int distance, long time, User Owner) {
+		System.out.println("Creating Challenge");
+		Challenge c=this.controller.createChallenge(name, end, end, distance, time, Owner);
+		return c;
+	}
+	
+		
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -132,7 +146,7 @@ public class ClientChallengeWindow extends JFrame {
 					int dist = Integer.parseInt(textDist.getText());
 					float time = Float.parseFloat(textTime.getText());
 					String owner = textOwner.getText();
-					
+					createChallenge(name, start, end, dist, dist, null );
 					//TODO add info 
 				}
 			});

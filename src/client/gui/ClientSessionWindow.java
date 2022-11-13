@@ -19,6 +19,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import client.controller.CrController;
+import server.data.domain.Session;
+import server.data.domain.User;
+
 
 public class ClientSessionWindow extends JFrame {
 
@@ -41,10 +45,17 @@ public class ClientSessionWindow extends JFrame {
 	private JDateChooser calendarStart;
 	private JDateChooser calendarEnd;
 	private SimpleDateFormat sdf;
+	private CrController controller;
 
 	/**
 	 * Launch the application.
 	 */
+	//Methods
+	public Session createSession(String title, String sport,int distance,Date start,Date end,User Owner,long duration) {
+		System.out.println("Creating Session");
+		Session s = this.controller.createSession(title, sport, distance, start, end, Owner, duration);
+		return s;
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -140,6 +151,7 @@ public class ClientSessionWindow extends JFrame {
 					Date end=calendarEnd.getDate();
 					String owner=textOwner.getText();
 					long duration=Long.parseLong(textDur.getText());
+					createSession(title, sport, distance, start, end, null, duration);
 					
 					//TODO add info 
 				}
