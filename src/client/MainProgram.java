@@ -1,5 +1,4 @@
 package client;
-
 import client.controller.CrController;
 import client.controller.LoginController;
 import client.gui.*;
@@ -13,5 +12,7 @@ public class MainProgram {
 		CrController crController = new CrController(serviceLocator);
 		//Login
 		loginDialog.login();
+		ClientSignUpWindow Csup = new ClientSignUpWindow();
+		
 	}
 }

@@ -115,6 +115,8 @@ public class ClientSignUpWindow extends JFrame {
 				String pass = textPass.getText();
 				RegisterUser(nick, pass);
 				//TODO add info to the client
+				setVisible(false);
+				ClientMainWindow mainWin = new ClientMainWindow();
 			}
 		});
 		btnLogin.addActionListener(new ActionListener() {
@@ -122,6 +124,8 @@ public class ClientSignUpWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Log in window
+				setVisible(false);
+				ClientLoginWindow Log = new ClientLoginWindow();
 				
 			}
 		});

@@ -67,6 +67,8 @@ public class ClientMainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
+				setVisible(false);
+				ClientChallengeWindow challwin = new ClientChallengeWindow();
 				
 			}
 		});
@@ -75,9 +77,11 @@ public class ClientMainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
-				
+				setVisible(false);
+				ClientSessionWindow sessionwin = new ClientSessionWindow();
 			}
 		});
+		setVisible(true);
 	}
 
 }

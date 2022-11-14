@@ -148,6 +148,9 @@ public class ClientChallengeWindow extends JFrame {
 					String owner = textOwner.getText();
 					createChallenge(name, start, end, dist, dist, null );
 					//TODO add info 
+					System.out.println("Challege created");
+					setVisible(false);
+					ClientMainWindow mainwin = new ClientMainWindow();
 				}
 			});
 

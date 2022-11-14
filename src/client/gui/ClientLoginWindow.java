@@ -97,6 +97,9 @@ public class ClientLoginWindow extends JFrame {
 				String pass = textPass.getText();
 				login(nick, pass);
 				//TODO log in to menu windows
+				System.out.println("Succesfully Loged in");
+				setVisible(false);
+				ClientMainWindow mainwin = new ClientMainWindow();
 			}
 		});
 		setVisible(true);

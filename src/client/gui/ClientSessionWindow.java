@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -154,6 +155,10 @@ public class ClientSessionWindow extends JFrame {
 					createSession(title, sport, distance, start, end, null, duration);
 					
 					//TODO add info 
+					System.out.println("Session created");
+					setVisible(false);
+					ClientMainWindow mainwin = new ClientMainWindow();
+					
 				}
 			});
 
