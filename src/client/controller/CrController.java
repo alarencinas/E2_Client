@@ -41,11 +41,11 @@ public class CrController {
 			return false;
 		}
 	}
-	public Challenge createChallenge(String name,Date start, Date end, int distance, long time, User Owner) {
-		return this.serviceLocator.getService().createChallenge(name, start, end, distance, time, Owner);
+	public ChallengeDTO createChallenge(String name,Date start, Date end, int distance, long time, long token) throws RemoteException {
+		return this.serviceLocator.getService().createChallenge(name, start, end, distance, time,  token);
 	}
-	public Session createSession(String title, String sport,int distance,Date start,Date end,User Owner,long duration) {
-		return this.serviceLocator.getService().createSession(title, sport, distance, start, end, Owner, duration);
+	public SessionDTO createSession(String title, String sport,int distance,Date start,Date end,long token,long duration) throws RemoteException {
+		return this.serviceLocator.getService().createSession(title, sport, distance, start, end, token, duration);
 	}
 	public void signUp(User Owner, Challenge challenge) {
 		
