@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ import com.toedter.calendar.JDateChooser;
 import client.controller.CrController;
 import server.data.domain.Session;
 import server.data.domain.User;
+import server.data.dto.SessionDTO;
 
 
 public class ClientSessionWindow extends JFrame {
@@ -50,11 +52,12 @@ public class ClientSessionWindow extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @throws RemoteException 
 	 */
 	//Methods
-	public Session createSession(String title, String sport,int distance,Date start,Date end,User Owner,long duration) {
+	public SessionDTO createSession(String title, String sport,int distance,Date start,Date end,long token,long duration) throws RemoteException {
 		System.out.println("Creating Session");
-		Session s = this.controller.createSession(title, sport, distance, start, end, Owner, duration);
+		SessionDTO s = this.controller.createSession(title, sport, distance, start, end,  token, duration);
 		return s;
 	}
 	public static void main(String[] args) {
@@ -152,7 +155,12 @@ public class ClientSessionWindow extends JFrame {
 					Date end=calendarEnd.getDate();
 					String owner=textOwner.getText();
 					long duration=Long.parseLong(textDur.getText());
-					createSession(title, sport, distance, start, end, null, duration);
+					try {
+						createSession(title, sport, distance, start, end, 02, duration);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					//TODO add info 
 					System.out.println("Session created");

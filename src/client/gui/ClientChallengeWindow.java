@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ import com.toedter.calendar.JDateChooser;
 import server.data.domain.Challenge;
 import server.data.domain.Session;
 import server.data.domain.User;
+import server.data.dto.ChallengeDTO;
 import server.remote.*;
 import client.controller.*;
 public class ClientChallengeWindow extends JFrame {
@@ -48,11 +50,12 @@ public class ClientChallengeWindow extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @throws RemoteException 
 	 */
 	//Methods
-	public Challenge createChallenge(String name,Date start, Date end, int distance, long time, User Owner) {
+	public ChallengeDTO createChallenge(String name,Date start, Date end, int distance, long time, long token) throws RemoteException {
 		System.out.println("Creating Challenge");
-		Challenge c=this.controller.createChallenge(name, end, end, distance, time, Owner);
+		ChallengeDTO c=this.controller.createChallenge(name, end, end, distance, time, token);
 		return c;
 	}
 	
@@ -146,7 +149,12 @@ public class ClientChallengeWindow extends JFrame {
 					int dist = Integer.parseInt(textDist.getText());
 					float time = Float.parseFloat(textTime.getText());
 					String owner = textOwner.getText();
-					createChallenge(name, start, end, dist, dist, null );
+					try {
+						createChallenge(name, start, end, dist, dist, 01 );
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					//TODO add info 
 					System.out.println("Challege created");
 					setVisible(false);
