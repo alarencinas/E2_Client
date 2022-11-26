@@ -35,10 +35,7 @@ public class ClientLoginWindow extends JFrame {
 	 * Launch the application.
 	 */
 	//Methods
-	public boolean login(String email, String password) {
-		System.out.println("Login");
-		return this.lController.login(email, password);
-	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -95,7 +92,7 @@ public class ClientLoginWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nick = textNick.getText();
 				String pass = textPass.getText();
-				login(nick, pass);
+				
 				//TODO log in to menu windows
 				System.out.println("Succesfully Loged in");
 				setVisible(false);

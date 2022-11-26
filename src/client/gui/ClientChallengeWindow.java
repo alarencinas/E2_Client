@@ -25,6 +25,7 @@ import server.data.domain.Challenge;
 import server.data.domain.Session;
 import server.data.domain.User;
 import server.data.dto.ChallengeDTO;
+import server.data.dto.UserDTO;
 import server.remote.*;
 import client.controller.*;
 public class ClientChallengeWindow extends JFrame {
@@ -53,11 +54,7 @@ public class ClientChallengeWindow extends JFrame {
 	 * @throws RemoteException 
 	 */
 	//Methods
-	public ChallengeDTO createChallenge(String name,Date start, Date end, int distance, long time, long token) throws RemoteException {
-		System.out.println("Creating Challenge");
-		ChallengeDTO c=this.controller.createChallenge(name, end, end, distance, time, token);
-		return c;
-	}
+	
 	
 		
 	public static void main(String[] args) {
@@ -76,7 +73,7 @@ public class ClientChallengeWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-		public ClientChallengeWindow() {
+		public ClientChallengeWindow(UserDTO user,CrController crController) {
 			setTitle("CREATE CHALLENGE");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
@@ -150,7 +147,7 @@ public class ClientChallengeWindow extends JFrame {
 					float time = Float.parseFloat(textTime.getText());
 					String owner = textOwner.getText();
 					try {
-						createChallenge(name, start, end, dist, dist, 01 );
+						
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

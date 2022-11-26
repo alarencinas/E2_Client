@@ -55,11 +55,7 @@ public class ClientSessionWindow extends JFrame {
 	 * @throws RemoteException 
 	 */
 	//Methods
-	public SessionDTO createSession(String title, String sport,int distance,Date start,Date end,long token,long duration) throws RemoteException {
-		System.out.println("Creating Session");
-		SessionDTO s = this.controller.createSession(title, sport, distance, start, end,  token, duration);
-		return s;
-	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

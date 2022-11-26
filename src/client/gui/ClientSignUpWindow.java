@@ -36,10 +36,7 @@ public class ClientSignUpWindow extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */public User RegisterUser(String nickname,String password) {
-		 User u = LController.RegisterUser(nickname, password);
-		 return u;
-	 }
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -113,7 +110,7 @@ public class ClientSignUpWindow extends JFrame {
 				String nick = textNIck.getText();
 				String mail = textMail.getText();
 				String pass = textPass.getText();
-				RegisterUser(nick, pass);
+				
 				//TODO add info to the client
 				setVisible(false);
 				ClientMainWindow mainWin = new ClientMainWindow();

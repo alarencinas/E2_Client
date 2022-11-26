@@ -2,8 +2,12 @@ package client.controller;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+
 import client.remote.ServiceLocator;
 import server.data.domain.User;
+import server.data.dto.LoginUserTypeDTO;
+import server.data.dto.UserDTO;
 
 
 //This class implements Controller pattern.
@@ -16,9 +20,9 @@ public class LoginController {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public boolean login(String email, String password) {
+	public boolean login(String email, String password,String nick, LoginUserTypeDTO usertype) {
 		try {
-			this.token = this.serviceLocator.getService().login(email, password);			
+			this.token = this.serviceLocator.getService().login(email, password, nick, usertype);			
 			return true;
 		} catch (RemoteException e) {
 			System.out.println("# Error during login: " + e);
@@ -35,9 +39,11 @@ public class LoginController {
 			System.out.println("# Error during logout: " + e);
 		}
 	}
-	public User RegisterUser(String nickname,String password) {
-		return this.serviceLocator.getService().RegisterUser(nickname, password);
+	public UserDTO getUser(String email,String password)throws RemoteException, ParseException{
+		return this.serviceLocator.getService().getUser(email, password);
+		
 	}
+	
 	public long getToken() {
 		return token;
 	}
