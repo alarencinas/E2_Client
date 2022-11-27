@@ -11,6 +11,8 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import client.controller.LoginController;
+import server.data.domain.LoginUserType;
+import server.data.domain.User;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -26,8 +28,8 @@ public class ClientLoginWindow extends JFrame {
 	private JPanel contentPane;
 	private JPanel panelSouth;
 	private JPanel panelCentre;
-	private  static JLabel lblNick;
-	private JTextField textNick;
+	private  static JLabel lblMail;
+	private JTextField textMail;
 	private JLabel lblPass;
 	private JPasswordField textPass;
 	private JButton btnLogin;
@@ -80,12 +82,12 @@ public class ClientLoginWindow extends JFrame {
 		contentPane.add(panelCentre, BorderLayout.CENTER);
 		panelCentre.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		lblNick = new JLabel("Insert your Nickname:");
-		panelCentre.add(lblNick);
+		lblMail = new JLabel("Insert your email:");
+		panelCentre.add(lblMail);
 		
-		textNick = new JTextField();
-		panelCentre.add(textNick);
-		textNick.setColumns(10);
+		textMail = new JTextField();
+		panelCentre.add(textMail);
+		textMail.setColumns(10);
 		
 		lblPass = new JLabel("Insert your password:");
 		panelCentre.add(lblPass);
@@ -98,10 +100,24 @@ public class ClientLoginWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nick = textNick.getText();
+				String mail = textMail.getText();
 				String pass = textPass.getText();
 				
 				//TODO log in to menu windows
+				User u = new User();
+				u.setEmail(mail);
+				u.setPassword(pass);
+				String op = (String) comboLogin.getSelectedItem();
+				
+				if(op=="Google") {
+				
+					u.setUsertype(LoginUserType.Google);
+				
+				}else if(op=="Facebook"){
+					u.setUsertype(LoginUserType.Facebook);
+				}else {
+					u.setUsertype(LoginUserType.Email);
+				}
 				System.out.println("Succesfully Loged in");
 				setVisible(false);
 				ClientMainWindow mainwin = new ClientMainWindow();
