@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class ClientLoginWindow extends JFrame {
 
@@ -31,6 +32,7 @@ public class ClientLoginWindow extends JFrame {
 	private JPasswordField textPass;
 	private JButton btnLogin;
 	private LoginController lController;
+	private JComboBox<String> comboLogin;
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +64,13 @@ public class ClientLoginWindow extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		comboLogin = new JComboBox<>();
+		comboLogin.addItem("Normal");
+		comboLogin.addItem("Google");
+		comboLogin.addItem("Facebook");
+		
 		panelSouth = new JPanel();
+		panelSouth.add(comboLogin);
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
 		btnLogin = new JButton("LOG IN");
