@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import client.controller.LoginController;
 import server.data.domain.LoginUserType;
 import server.data.domain.User;
+import server.data.dto.LoginUserTypeDTO;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -104,20 +105,17 @@ public class ClientLoginWindow extends JFrame {
 				String pass = textPass.getText();
 				
 				//TODO log in to menu windows
-				User u = new User();
-				u.setEmail(mail);
-				u.setPassword(pass);
 				String op = (String) comboLogin.getSelectedItem();
-				
+				LoginUserTypeDTO l;
 				if(op=="Google") {
-				
-					u.setUsertype(LoginUserType.Google);
+					l=LoginUserTypeDTO.Google;
 				
 				}else if(op=="Facebook"){
-					u.setUsertype(LoginUserType.Facebook);
+					l=LoginUserTypeDTO.Facebook;
 				}else {
-					u.setUsertype(LoginUserType.Email);
+					l=LoginUserTypeDTO.Email;
 				}
+				lController.login(mail, pass, "",l);
 				System.out.println("Succesfully Loged in");
 				setVisible(false);
 				ClientMainWindow mainwin = new ClientMainWindow();
