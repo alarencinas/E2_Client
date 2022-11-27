@@ -145,10 +145,14 @@ public class ClientChallengeWindow extends JFrame {
 					Date end  = calendarEnd.getDate();
 					int dist = Integer.parseInt(textDist.getText());
 					float time = Float.parseFloat(textTime.getText());
-					String owner = textOwner.getText();
+					String ownerName = textOwner.getText();
+					UserDTO owner = new UserDTO();
+					owner.setNickname(ownerName);
+					
 					try {
-						
-					} catch (RemoteException e1) {
+						ChallengeDTO cDTO = new ChallengeDTO(name, start, end, dist, time, owner);
+						crController.
+					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
