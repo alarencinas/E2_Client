@@ -151,9 +151,17 @@ public class ClientSessionWindow extends JFrame {
 					Date end=calendarEnd.getDate();
 					String owner=textOwner.getText();
 					long duration=Long.parseLong(textDur.getText());
+					
+					SessionDTO s = new SessionDTO();
+					
 					try {
-						createSession(title, sport, distance, start, end, 02, duration);
-					} catch (RemoteException e1) {
+						s.setDistance(distance);
+						s.setDuration(duration);
+						s.setSport(sport);
+						s.setStart(start);
+						s.setTitle(title);
+						
+					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
