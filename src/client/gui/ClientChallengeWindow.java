@@ -61,7 +61,7 @@ public class ClientChallengeWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientChallengeWindow frame = new ClientChallengeWindow();
+				ClientChallengeWindow frame = new ClientChallengeWindow(null, null); //TODO
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -150,8 +150,8 @@ public class ClientChallengeWindow extends JFrame {
 					owner.setNickname(ownerName);
 					
 					try {
-						ChallengeDTO cDTO = new ChallengeDTO(name, start, end, dist, time, owner);
-						crController.
+						//ChallengeDTO cDTO = new ChallengeDTO(name, start, end, dist, time, owner);
+						//crController.
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
