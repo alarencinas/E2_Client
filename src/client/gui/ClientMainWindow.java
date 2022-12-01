@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import server.data.dto.UserDTO;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -36,7 +39,7 @@ public class ClientMainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientMainWindow() {
+	public ClientMainWindow(UserDTO user) {
 		setTitle("STRAVA MENU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -68,7 +71,7 @@ public class ClientMainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
 				setVisible(false);
-				ClientChallengeWindow challwin = new ClientChallengeWindow();
+				ClientChallengeWindow challwin = new ClientChallengeWindow(user, null); //TODO de donde sacamos el CrController que ha que pasar aqui?
 				
 			}
 		});

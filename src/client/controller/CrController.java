@@ -2,13 +2,13 @@ package client.controller;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
+
 import client.remote.ServiceLocator;
 import server.data.dto.SessionDTO;
 import server.data.dto.UserDTO;
-import server.data.domain.Challenge;
-import server.data.domain.Session;
-import server.data.domain.User;
 import server.data.dto.ChallengeDTO;
+
+
 public class CrController {
 	//Reference to the Service locator
 	protected ServiceLocator serviceLocator;

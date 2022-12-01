@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import client.controller.LoginController;
-import server.data.domain.User;
 
 public class ClientSignUpWindow extends JFrame {
 

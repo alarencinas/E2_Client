@@ -22,8 +22,6 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import client.controller.CrController;
-import server.data.domain.Session;
-import server.data.domain.User;
 import server.data.dto.SessionDTO;
 
 

@@ -21,13 +21,13 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
-import server.data.domain.Challenge;
-import server.data.domain.Session;
-import server.data.domain.User;
+
 import server.data.dto.ChallengeDTO;
 import server.data.dto.UserDTO;
 import server.remote.*;
 import client.controller.*;
+
+@SuppressWarnings("serial")
 public class ClientChallengeWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -146,8 +146,19 @@ public class ClientChallengeWindow extends JFrame {
 					int dist = Integer.parseInt(textDist.getText());
 					float time = Float.parseFloat(textTime.getText());
 					String ownerName = textOwner.getText();
+					
 					UserDTO owner = new UserDTO();
 					owner.setNickname(ownerName);
+					
+					ChallengeDTO cDTO = new ChallengeDTO();
+					cDTO.setDistance(dist);
+					cDTO.setEnd(end);
+					cDTO.setName(name);
+					cDTO.setOwner(owner);
+					cDTO.setStart(start);
+					cDTO.setTime(time); 	//TODO owner solo tiene nombre. pensar que vamos a hacer para solucionarlo.
+					cDTO.setSport(null);	//TODO no hay label ni textfield para sacr el tipo de deporte
+					
 					
 					try {
 						//ChallengeDTO cDTO = new ChallengeDTO(name, start, end, dist, time, owner);

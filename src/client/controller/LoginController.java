@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 
 import client.remote.ServiceLocator;
-import server.data.domain.User;
 import server.data.dto.LoginUserTypeDTO;
 import server.data.dto.UserDTO;
 

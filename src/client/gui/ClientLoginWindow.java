@@ -11,9 +11,8 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import client.controller.LoginController;
-import server.data.domain.LoginUserType;
-import server.data.domain.User;
 import server.data.dto.LoginUserTypeDTO;
+import server.data.dto.UserDTO;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -104,6 +103,8 @@ public class ClientLoginWindow extends JFrame {
 				String mail = textMail.getText();
 				String pass = textPass.getText();
 				
+				UserDTO usr = new UserDTO(); //TODO contrastar con BBDD y recuperar el usuario para pasarlselo a la ventana
+				
 				//TODO log in to menu windows
 				String op = (String) comboLogin.getSelectedItem();
 				LoginUserTypeDTO l;
@@ -115,10 +116,11 @@ public class ClientLoginWindow extends JFrame {
 				}else {
 					l=LoginUserTypeDTO.Email;
 				}
+				
 				lController.login(mail, pass, "",l);
 				System.out.println("Succesfully Loged in");
 				setVisible(false);
-				ClientMainWindow mainwin = new ClientMainWindow();
+				ClientMainWindow mainwin = new ClientMainWindow(usr, );
 			}
 		});
 		setVisible(true);
