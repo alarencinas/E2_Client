@@ -170,7 +170,8 @@ public class ClientChallengeWindow extends JFrame {
 					//TODO add info 
 					System.out.println("Challege created");
 					setVisible(false);
-					ClientMainWindow mainwin = new ClientMainWindow();
+					ClientMainWindow mainwin = new ClientMainWindow(user);
+					mainwin.setVisible(true);
 				}
 			});
 

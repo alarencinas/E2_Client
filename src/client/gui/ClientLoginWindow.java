@@ -120,7 +120,8 @@ public class ClientLoginWindow extends JFrame {
 				lController.login(mail, pass, "",l);
 				System.out.println("Succesfully Loged in");
 				setVisible(false);
-				ClientMainWindow mainwin = new ClientMainWindow(usr, );
+				ClientMainWindow mainwin = new ClientMainWindow(usr);
+				mainwin.setVisible(true);
 			}
 		});
 		setVisible(true);

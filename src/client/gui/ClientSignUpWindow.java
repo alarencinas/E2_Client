@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import client.controller.LoginController;
+import server.data.dto.UserDTO;
 
 public class ClientSignUpWindow extends JFrame {
 
@@ -109,10 +110,14 @@ public class ClientSignUpWindow extends JFrame {
 				String nick = textNIck.getText();
 				String mail = textMail.getText();
 				String pass = textPass.getText();
+				UserDTO user = new UserDTO();
+				user.setEmail(mail);
+				user.setNickname(nick);
+				user.setPassword
 				
 				//TODO add info to the client
 				setVisible(false);
-				ClientMainWindow mainWin = new ClientMainWindow();
+				ClientMainWindow mainWin = new ClientMainWindow(user);
 			}
 		});
 		btnLogin.addActionListener(new ActionListener() {
