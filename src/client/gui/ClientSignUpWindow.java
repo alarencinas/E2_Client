@@ -110,10 +110,11 @@ public class ClientSignUpWindow extends JFrame {
 				String nick = textNIck.getText();
 				String mail = textMail.getText();
 				String pass = textPass.getText();
+				//TODO hacer los textfield para los demas atributos del UserDTO 
 				UserDTO user = new UserDTO();
 				user.setEmail(mail);
 				user.setNickname(nick);
-				user.setPassword
+				user.setPassword(pass);
 				
 				//TODO add info to the client
 				setVisible(false);

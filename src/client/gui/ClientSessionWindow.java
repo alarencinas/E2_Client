@@ -167,7 +167,7 @@ public class ClientSessionWindow extends JFrame {
 					//TODO add info 
 					System.out.println("Session created");
 					setVisible(false);
-					ClientMainWindow mainwin = new ClientMainWindow();
+//					ClientMainWindow mainwin = new ClientMainWindow();
 					
 				}
 			});
