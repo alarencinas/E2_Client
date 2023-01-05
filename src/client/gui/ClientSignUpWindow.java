@@ -66,7 +66,7 @@ public class ClientSignUpWindow extends JFrame {
 		panelSouth = new JPanel();
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
-		btnRegister = new JButton("SIIGN UP");
+		btnRegister = new JButton("SIGN UP");
 		panelSouth.add(btnRegister);
 		
 		lblLogin = new JLabel("Already signed up?");
