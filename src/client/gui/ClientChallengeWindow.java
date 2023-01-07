@@ -48,7 +48,8 @@ public class ClientChallengeWindow extends JFrame {
 	private JDateChooser calendarEnd;
 	private SimpleDateFormat sdf;
 	private CrController controller;
-
+	private JLabel lblSport;
+	private JTextField textSport;
 	/**
 	 * Launch the application.
 	 * @throws RemoteException 
@@ -135,6 +136,12 @@ public class ClientChallengeWindow extends JFrame {
 			textOwner = new JTextField();
 			panelCentre.add(textOwner);
 			
+			lblSport = new JLabel("Insert the Sport:");
+			panelCentre.add(lblSport);
+			
+			textSport = new JTextField();
+			panelCentre.add(textSport);
+			
 			
 			btnEnter.addActionListener(new ActionListener() {
 				
@@ -146,18 +153,16 @@ public class ClientChallengeWindow extends JFrame {
 					int dist = Integer.parseInt(textDist.getText());
 					float time = Float.parseFloat(textTime.getText());
 					String ownerName = textOwner.getText();
-					
-					UserDTO owner = new UserDTO();
-					owner.setNickname(ownerName);
+					String sport = textSport.getText();
 					
 					ChallengeDTO cDTO = new ChallengeDTO();
 					cDTO.setDistance(dist);
 					cDTO.setEnd(end);
 					cDTO.setName(name);
-					cDTO.setOwner(owner);
+					cDTO.setOwner(user);	
 					cDTO.setStart(start);
-					cDTO.setTime(time); 	//TODO owner solo tiene nombre. pensar que vamos a hacer para solucionarlo.
-					cDTO.setSport(null);	//TODO no hay label ni textfield para sacr el tipo de deporte
+					cDTO.setTime(time); 	
+					cDTO.setSport(sport);	
 					
 					
 					try {

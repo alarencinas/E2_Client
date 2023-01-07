@@ -23,6 +23,7 @@ import com.toedter.calendar.JDateChooser;
 
 import client.controller.CrController;
 import server.data.dto.SessionDTO;
+import server.data.dto.UserDTO;
 
 
 public class ClientSessionWindow extends JFrame {
@@ -56,9 +57,10 @@ public class ClientSessionWindow extends JFrame {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			UserDTO user = new UserDTO();
 			public void run() {
 				try {
-					ClientSessionWindow frame = new ClientSessionWindow();
+					ClientSessionWindow frame = new ClientSessionWindow(user);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,7 +72,7 @@ public class ClientSessionWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-		public ClientSessionWindow() {
+		public ClientSessionWindow(UserDTO user ) {
 			setTitle("CREATE SESSION");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
