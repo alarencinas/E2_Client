@@ -42,6 +42,13 @@ public class LoginController {
 		return this.serviceLocator.getService().getUser(email, password);
 		
 	}
+	public void createUser(LoginUserTypeDTO type, String nickname,String password,String email)throws RemoteException{
+		 this.serviceLocator.getService().createUser(type, nickname, password, email);
+	}
+	public UserDTO updateUser(UserDTO user)throws RemoteException{
+		return this.serviceLocator.getService().updateUser(user);
+	}
+	
 	
 	public long getToken() {
 		return token;
