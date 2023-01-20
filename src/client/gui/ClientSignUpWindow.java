@@ -127,7 +127,7 @@ public class ClientSignUpWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Log in window
 				setVisible(false);
-				ClientLoginWindow Log = new ClientLoginWindow();
+				ClientLoginWindow log = new ClientLoginWindow();
 				
 			}
 		});

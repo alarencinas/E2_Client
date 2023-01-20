@@ -71,8 +71,8 @@ public class ClientMainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
 				setVisible(false);
-				ClientChallengeWindow challwin = new ClientChallengeWindow(user, null); //TODO de donde sacamos el CrController que ha que pasar aqui?
-				
+				ClientChallengeWindow challwin = new ClientChallengeWindow(user, null); //TODO de donde sacamos el CrController que hay que pasar aqui?
+				challwin.setVisible(true);
 			}
 		});
 		btnSession.addActionListener(new ActionListener() {
@@ -81,7 +81,8 @@ public class ClientMainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
 				setVisible(false);
-				ClientSessionWindow sessionwin = new ClientSessionWindow();
+				ClientSessionWindow sessionwin = new ClientSessionWindow(user);
+				sessionwin.setVisible(true);
 			}
 		});
 		setVisible(true);

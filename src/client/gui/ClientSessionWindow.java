@@ -128,12 +128,6 @@ public class ClientSessionWindow extends JFrame {
 			calendarEnd.getJCalendar().setMaxSelectableDate(dact);	
 		
 			
-			lblOwner = new JLabel("Insert the owner:");
-			panelCentre.add(lblOwner);
-			
-			textOwner = new JTextField();
-			panelCentre.add(textOwner);
-			
 			lblDur = new JLabel("Insert the duration:");
 			panelCentre.add(lblDur);
 			
@@ -149,9 +143,7 @@ public class ClientSessionWindow extends JFrame {
 					int distance=Integer.parseInt(textDist.getText());
 					Date start=calendarStart.getDate();
 					Date end=calendarEnd.getDate();
-					String owner=textOwner.getText();
 					long duration=Long.parseLong(textDur.getText());
-					
 					SessionDTO s = new SessionDTO();
 					
 					try {
@@ -160,6 +152,8 @@ public class ClientSessionWindow extends JFrame {
 						s.setSport(sport);
 						s.setStart(start);
 						s.setTitle(title);
+						s.setEnd(end);
+						user.getSessions().add(s);
 						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
