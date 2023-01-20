@@ -29,14 +29,14 @@ public class CrController {
 	public float challAcomplished(UserDTO user,ChallengeDTO challenge)throws RemoteException{
 		return this.serviceLocator.getService().challAcomplished(user, challenge);
 	}
-	public void createChallenge(UserDTO userDTO,String name, String start, String end ,int distance ,float time,String Sport ) throws RemoteException{
+	public void createChallenge(UserDTO userDTO,String name, Date start, Date end ,int distance ,float time,String Sport ) throws RemoteException{
 		this.serviceLocator.getService().createChallenge(userDTO, name, start, end, distance, time, Sport);
 	}
 	
 	public void DelChallenge(String title)throws RemoteException{
 		this.serviceLocator.getService().DelChallenge(title);
 	}
-	public List <SessionDTO> createSession(UserDTO userDTO, String title , String sport, int distance, String start, long duration)throws RemoteException{
+	public List <SessionDTO> createSession(UserDTO userDTO, String title , String sport, int distance, Date start, long duration)throws RemoteException{
 		return this.serviceLocator.getService().createSession(userDTO, title, sport, distance, start, duration);
 	}
 	public UserDTO acceptChallenge(User userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
