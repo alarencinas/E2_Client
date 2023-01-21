@@ -1,6 +1,5 @@
 package client.controller;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 

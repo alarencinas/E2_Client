@@ -24,7 +24,6 @@ import com.toedter.calendar.JDateChooser;
 
 import server.data.dto.ChallengeDTO;
 import server.data.dto.UserDTO;
-import server.remote.*;
 import client.controller.*;
 
 @SuppressWarnings("serial")

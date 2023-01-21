@@ -6,7 +6,6 @@ import java.util.List;
 import client.remote.ServiceLocator;
 import server.data.dto.SessionDTO;
 import server.data.dto.UserDTO;
-import server.data.domain.User;
 import server.data.dto.ChallengeDTO;
 
 
@@ -39,9 +38,9 @@ public class CrController {
 	public List <SessionDTO> createSession(UserDTO userDTO, String title , String sport, int distance, Date start, long duration)throws RemoteException{
 		return this.serviceLocator.getService().createSession(userDTO, title, sport, distance, start, duration);
 	}
-	public UserDTO acceptChallenge(User userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
-		return this.serviceLocator.getService().acceptChallenge(userDTO, challengeAccepted);
-	}
+	//public UserDTO acceptChallenge(UserDTO userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
+		//return this.serviceLocator.getService().acceptChallenge(userDTO, challengeAccepted);
+	//}
 	
 	
 }
