@@ -28,7 +28,7 @@ public class ClientChallengeWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panelSouth;
-	private static JPanel panelCentre;
+	private  JPanel panelCentre;
 	private  JLabel lblName;
 	private  JTextField textName;
 	private  JLabel lblDist;
@@ -43,7 +43,6 @@ public class ClientChallengeWindow extends JFrame {
 	private JDateChooser calendarStart;
 	private JDateChooser calendarEnd;
 	private SimpleDateFormat sdf;
-	private CrController controller;
 	private JLabel lblSport;
 	private JTextField textSport;
 	/**
@@ -107,7 +106,7 @@ public class ClientChallengeWindow extends JFrame {
 			
 			textTime = new JTextField();
 			panelCentre.add(textTime);
-
+			
 			sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dact = new Date(System.currentTimeMillis());
 			calendarStart.getJCalendar().setMaxSelectableDate(dact);

@@ -99,6 +99,7 @@ public class ClientLoginWindow extends JFrame {
 				try {
 					if(loginController.getUser(mail, pass)!= null){
 						new ClientMainWindow(loginController.getUser(mail, pass),crController,loginController);
+						
 						dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "Incorrect Password");

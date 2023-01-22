@@ -20,6 +20,8 @@ import javax.swing.JButton;
 public class ClientMainWindow extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnChallenge;
+	private JButton btnSession;
 
 	/**
 	 * Launch the application.
@@ -54,10 +56,10 @@ public class ClientMainWindow extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton btnChallenge = new JButton("CREATE CHALLENGE");
+		 btnChallenge = new JButton("CREATE CHALLENGE");
 		panel.add(btnChallenge);
 		
-		JButton btnSession = new JButton("CREATE SESSION");
+		 btnSession = new JButton("CREATE SESSION");
 		panel.add(btnSession);
 		
 		JPanel panelSouth = new JPanel();
@@ -65,10 +67,9 @@ public class ClientMainWindow extends JFrame {
 		
 		JButton btnExit = new JButton("Exit");
 		panelSouth.add(btnExit);
-		
 		btnChallenge.addActionListener(new ActionListener() {
 			
-			@Override
+		
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
 				
@@ -78,10 +79,10 @@ public class ClientMainWindow extends JFrame {
 		});
 		btnSession.addActionListener(new ActionListener() {
 			
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
-				setVisible(false);
+				
 				ClientSessionWindow sessionwin = new ClientSessionWindow(user, crController, loginController);
 				sessionwin.setVisible(true);
 			}

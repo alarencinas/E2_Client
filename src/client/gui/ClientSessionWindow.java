@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JDateChooser;
 
 import client.controller.CrController;
 import client.controller.LoginController;
@@ -31,6 +31,10 @@ import server.data.dto.UserDTO;
 
 public class ClientSessionWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelSouth;
 	private static JPanel panelCentre;
@@ -46,9 +50,10 @@ public class ClientSessionWindow extends JFrame {
 	private  JLabel lblStart;
 	private  JLabel lblEnd;
 	private  JTextField textDur;
+	private JTextField dateStart,dateEnd;
+	
 	private JButton btnEnter;
-	private JDateChooser calendarStart;
-	private JDateChooser calendarEnd;
+	
 	private SimpleDateFormat sdf;
 	private CrController controller;
 
@@ -58,19 +63,7 @@ public class ClientSessionWindow extends JFrame {
 	 */
 	//Methods
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			UserDTO user = new UserDTO();
-			public void run() {
-				try {
-					//ClientSessionWindow frame = new ClientSessionWindow(user);
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -116,20 +109,20 @@ public class ClientSessionWindow extends JFrame {
 			lblStart = new JLabel("Insert the starting date:");
 			panelCentre.add(lblStart);
 			
-			calendarStart = new JDateChooser();
-			panelCentre.add(calendarStart);
+			dateStart= new JTextField();
+			panelCentre.add(dateStart);
 			
 			lblEnd = new JLabel("Insert the ending date:");
 			panelCentre.add(lblEnd);
 			
-			calendarEnd = new JDateChooser();
-			panelCentre.add(calendarEnd);
+			dateEnd = new JTextField();
+			panelCentre.add(dateEnd);
 			
-			sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date dact = new Date(System.currentTimeMillis());
-			calendarStart.getJCalendar().setMaxSelectableDate(dact);
-			calendarEnd.getJCalendar().setMaxSelectableDate(dact);	
-		
+//			sdf = new SimpleDateFormat("yyyy-MM-dd");
+//			Date dact = new Date(System.currentTimeMillis());
+//			calendarStart.getJCalendar().setMaxSelectableDate(dact);
+//			calendarEnd.getJCalendar().setMaxSelectableDate(dact);	
+//		
 			
 			lblDur = new JLabel("Insert the duration:");
 			panelCentre.add(lblDur);
@@ -142,10 +135,25 @@ public class ClientSessionWindow extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String title=textTitle.getText();
+					sdf = new SimpleDateFormat("dd-MM-yyyy");
 					String sport=textSport.getText();
 					int distance=Integer.parseInt(textDist.getText());
-					Date start=calendarStart.getDate();
-					Date end=calendarEnd.getDate();
+					Date start = new Date();
+					try {
+						 start = sdf.parse(dateStart.getText());
+						
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					Date end = new Date();
+					try {
+						 end=sdf.parse(dateEnd.getText());
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
 					long duration=Long.parseLong(textDur.getText());
 					//SessionDTO s = new SessionDTO();
 					
