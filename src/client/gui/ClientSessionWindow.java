@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import client.controller.CrController;
+import client.controller.LoginController;
 import server.data.dto.SessionDTO;
 import server.data.dto.UserDTO;
 
@@ -60,8 +63,8 @@ public class ClientSessionWindow extends JFrame {
 			UserDTO user = new UserDTO();
 			public void run() {
 				try {
-					ClientSessionWindow frame = new ClientSessionWindow(user);
-					frame.setVisible(true);
+					//ClientSessionWindow frame = new ClientSessionWindow(user);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,7 +75,7 @@ public class ClientSessionWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-		public ClientSessionWindow(UserDTO user ) {
+		public ClientSessionWindow(UserDTO user,CrController crController,LoginController loginController ) {
 			setTitle("CREATE SESSION");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
@@ -144,16 +147,12 @@ public class ClientSessionWindow extends JFrame {
 					Date start=calendarStart.getDate();
 					Date end=calendarEnd.getDate();
 					long duration=Long.parseLong(textDur.getText());
-					SessionDTO s = new SessionDTO();
+					//SessionDTO s = new SessionDTO();
 					
 					try {
-						s.setDistance(distance);
-						s.setDuration(duration);
-						s.setSport(sport);
-						s.setStart(start);
-						s.setTitle(title);
-						s.setEnd(end);
-						user.getSessions().add(s);
+						List<SessionDTO> newsessions = new ArrayList<>();
+						newsessions = crController.createSession(user, title, sport, distance, start, duration);
+						user.setSessions(newsessions);
 						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block

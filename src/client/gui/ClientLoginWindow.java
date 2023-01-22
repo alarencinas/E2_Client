@@ -10,15 +10,20 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
+import client.controller.CrController;
 import client.controller.LoginController;
 import server.data.dto.LoginUserTypeDTO;
 import server.data.dto.UserDTO;
 
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.text.ParseException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -40,24 +45,13 @@ public class ClientLoginWindow extends JFrame {
 	 */
 	//Methods
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientLoginWindow frame = new ClientLoginWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public ClientLoginWindow() {
-
+	public ClientLoginWindow(LoginController loginController, CrController crController) {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
@@ -101,27 +95,44 @@ public class ClientLoginWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String mail = textMail.getText();
-				String pass = textPass.getText();
-				
-				UserDTO usr = new UserDTO(); //TODO contrastar con BBDD y recuperar el usuario para pasarlselo a la ventana
-				
-				//TODO log in to menu windows
-				String op = (String) comboLogin.getSelectedItem();
-				LoginUserTypeDTO l;
-				if(op=="Google") {
-					l=LoginUserTypeDTO.Google;
-				
-				}else if(op=="Facebook"){
-					l=LoginUserTypeDTO.Facebook;
-				}else {
-					l=LoginUserTypeDTO.Email;
+				String pass = String.valueOf(textPass.getPassword());
+				try {
+					if(loginController.getUser(mail, pass).getNickname()!= null){
+						new ClientMainWindow(loginController.getUser(mail, pass),crController,loginController);
+						dispose();
+					}else {
+						JOptionPane.showMessageDialog(null, "Incorrect Password");
+					}
+					
+				}catch (RemoteException e2) {
+					e2.printStackTrace();
 				}
-				
-				lController.login(mail, pass, "",l);
-				System.out.println("Succesfully Loged in");
-				setVisible(false);
-				ClientMainWindow mainwin = new ClientMainWindow(usr);
-				mainwin.setVisible(true);
+//				UserDTO usr = new UserDTO(); //TODO contrastar con BBDD y recuperar el usuario para pasarlselo a la ventana
+//				
+//				//TODO log in to menu windows
+//				String op = (String) comboLogin.getSelectedItem();
+//				LoginUserTypeDTO l;
+//				if(op=="Google") {
+//					l=LoginUserTypeDTO.Google;
+//				
+//				}else if(op=="Facebook"){
+//					l=LoginUserTypeDTO.Facebook;
+//				}else {
+//					l=LoginUserTypeDTO.Email;
+//				}
+//				
+//				lController.login(mail, pass, "",l);
+//				System.out.println("Succesfully Loged in");
+//				setVisible(false);
+//				ClientMainWindow mainwin = new ClientMainWindow(usr);
+//				mainwin.setVisible(true);
+ catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		setVisible(true);

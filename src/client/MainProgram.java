@@ -12,7 +12,7 @@ public class MainProgram {
 		CrController crController = new CrController(serviceLocator);
 		//Login
 		loginDialog.login();
-		ClientSignUpWindow Csup = new ClientSignUpWindow();
+		ClientSignUpWindow Csup = new ClientSignUpWindow(loginController,crController);
 		
 	}
 }

@@ -1,9 +1,4 @@
-package client.gui;
-
-
 import java.awt.BorderLayout;
-
-
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -57,23 +52,11 @@ public class ClientChallengeWindow extends JFrame {
 	
 	
 		
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-				ClientChallengeWindow frame = new ClientChallengeWindow(null, null); //TODO
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-		public ClientChallengeWindow(UserDTO user,CrController crController) {
+		public ClientChallengeWindow(UserDTO user,CrController crController,LoginController loginController) {
 			setTitle("CREATE CHALLENGE");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
@@ -154,19 +137,18 @@ public class ClientChallengeWindow extends JFrame {
 					String ownerName = textOwner.getText();
 					String sport = textSport.getText();
 					
-					ChallengeDTO cDTO = new ChallengeDTO();
-					cDTO.setDistance(dist);
-					cDTO.setEnd(end);
-					cDTO.setName(name);
-					cDTO.setOwner(user);	
-					cDTO.setStart(start);
-					cDTO.setTime(time); 	
-					cDTO.setSport(sport);	
+//					ChallengeDTO cDTO = new ChallengeDTO();
+//					cDTO.setDistance(dist);
+//					cDTO.setEnd(end);
+//					cDTO.setName(name);
+//					cDTO.setOwner(user);	
+//					cDTO.setStart(start);
+//					cDTO.setTime(time); 	
+//					cDTO.setSport(sport);	
 					
 					
 					try {
-						//ChallengeDTO cDTO = new ChallengeDTO(name, start, end, dist, time, owner);
-						//crController.
+						crController.createChallenge(user, ownerName, start, end, dist, time, sport);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -174,7 +156,7 @@ public class ClientChallengeWindow extends JFrame {
 					//TODO add info 
 					System.out.println("Challege created");
 					setVisible(false);
-					ClientMainWindow mainwin = new ClientMainWindow(user);
+					ClientMainWindow mainwin = new ClientMainWindow(user,crController,loginController);
 					mainwin.setVisible(true);
 				}
 			});

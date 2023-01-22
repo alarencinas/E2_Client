@@ -15,7 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import client.controller.CrController;
 import client.controller.LoginController;
+import server.data.dto.LoginUserTypeDTO;
 import server.data.dto.UserDTO;
 
 public class ClientSignUpWindow extends JFrame {
@@ -41,8 +43,8 @@ public class ClientSignUpWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientSignUpWindow frame = new ClientSignUpWindow();
-					frame.setVisible(true);
+					//ClientSignUpWindow frame = new ClientSignUpWindow(LController, null);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +55,7 @@ public class ClientSignUpWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientSignUpWindow() {
+	public ClientSignUpWindow(LoginController loginController,CrController crController) {
 		setTitle("SIGN UP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -109,25 +111,28 @@ public class ClientSignUpWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nick = textNIck.getText();
 				String mail = textMail.getText();
+				//TODO
+				//Change
 				String pass = textPass.getText();
-				//TODO hacer los textfield para los demas atributos del UserDTO 
-				UserDTO user = new UserDTO();
-				user.setEmail(mail);
-				user.setNickname(nick);
-				user.setPassword(pass);
+				try {
+					loginController.createUser(LoginUserTypeDTO.Email, nick, pass, mail);
+					 new ClientSignUpWindow(loginController, crController);
+					 dispose();
+				}catch (Exception e3) {
+					e3.printStackTrace();
+				}
 				
-				//TODO add info to the client
-				setVisible(false);
-				ClientMainWindow mainWin = new ClientMainWindow(user);
+				
+				
 			}
 		});
 		btnLogin.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Log in window
+		public void actionPerformed(ActionEvent e) {
+			// TODO Log in window
 				setVisible(false);
-				ClientLoginWindow log = new ClientLoginWindow();
+			ClientLoginWindow log = new ClientLoginWindow(loginController, crController);
 				
 			}
 		});

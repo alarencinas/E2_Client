@@ -35,12 +35,13 @@ public class CrController {
 	public void DelChallenge(String title)throws RemoteException{
 		this.serviceLocator.getService().DelChallenge(title);
 	}
+	//REVISE THIS METHOD
 	public List <SessionDTO> createSession(UserDTO userDTO, String title , String sport, int distance, Date start, long duration)throws RemoteException{
 		return this.serviceLocator.getService().createSession(userDTO, title, sport, distance, start, duration);
 	}
-	//public UserDTO acceptChallenge(UserDTO userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
-		//return this.serviceLocator.getService().acceptChallenge(userDTO, challengeAccepted);
-	//}
+	public UserDTO acceptChallenge(UserDTO userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
+		return this.serviceLocator.getService().acceptChallenge(userDTO, challengeAccepted);
+	}
 	
 	
 }

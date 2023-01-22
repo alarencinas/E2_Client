@@ -5,9 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import client.controller.CrController;
+import client.controller.LoginController;
 import server.data.dto.UserDTO;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +28,7 @@ public class ClientMainWindow extends JFrame {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
 //				try {
-//					ClientMainWindow frame = new ClientMainWindow(User);
+//					ClientMainWindow frame = new ClientMainWindow(null, null, null);
 //					frame.setVisible(true);
 //				} catch (Exception e) {
 //					e.printStackTrace();
@@ -37,7 +40,7 @@ public class ClientMainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientMainWindow(UserDTO user) {
+	public ClientMainWindow(UserDTO user,CrController crController,LoginController loginController) {
 		setTitle("STRAVA MENU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -69,7 +72,7 @@ public class ClientMainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
 				setVisible(false);
-				ClientChallengeWindow challwin = new ClientChallengeWindow(user, null); //TODO de donde sacamos el CrController que hay que pasar aqui?
+				ClientChallengeWindow challwin = new ClientChallengeWindow(user, crController,loginController); //TODO de donde sacamos el CrController que hay que pasar aqui?
 				challwin.setVisible(true);
 			}
 		});
@@ -79,7 +82,7 @@ public class ClientMainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
 				setVisible(false);
-				ClientSessionWindow sessionwin = new ClientSessionWindow(user);
+				ClientSessionWindow sessionwin = new ClientSessionWindow(user, crController, loginController);
 				sessionwin.setVisible(true);
 			}
 		});
