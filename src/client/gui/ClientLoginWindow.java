@@ -97,7 +97,7 @@ public class ClientLoginWindow extends JFrame {
 				String mail = textMail.getText();
 				String pass = String.valueOf(textPass.getPassword());
 				try {
-					if(loginController.getUser(mail, pass).getNickname()!= null){
+					if(loginController.getUser(mail, pass)!= null){
 						new ClientMainWindow(loginController.getUser(mail, pass),crController,loginController);
 						dispose();
 					}else {

@@ -71,9 +71,9 @@ public class ClientMainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 
-				setVisible(false);
-				ClientChallengeWindow challwin = new ClientChallengeWindow(user, crController,loginController); //TODO de donde sacamos el CrController que hay que pasar aqui?
-				challwin.setVisible(true);
+				
+				new ClientChallengeWindow(user, crController,loginController); //TODO de donde sacamos el CrController que hay que pasar aqui?
+				dispose();
 			}
 		});
 		btnSession.addActionListener(new ActionListener() {

@@ -32,6 +32,8 @@ public class ClientSignUpWindow extends JFrame {
 	private static JLabel lblMail;
 	private static JTextField textMail;
 	private JButton btnRegister;
+	private JButton btnRegisterGoogle;
+	private JButton btnFacebookRegister;
 	private static JLabel lblLogin;
 	private JButton btnLogin;
 	private LoginController LController;
@@ -70,7 +72,10 @@ public class ClientSignUpWindow extends JFrame {
 		
 		btnRegister = new JButton("SIGN UP");
 		panelSouth.add(btnRegister);
-		
+		btnFacebookRegister= new JButton("SIGN UP WITH FACEBOOK");
+		panelSouth.add(btnFacebookRegister);
+		btnRegisterGoogle= new JButton("SIGN UP WITH GOOGLE");
+		panelSouth.add(btnRegisterGoogle);
 		lblLogin = new JLabel("Already signed up?");
 		panelSouth.add(lblLogin);
 		
@@ -116,6 +121,49 @@ public class ClientSignUpWindow extends JFrame {
 				String pass = textPass.getText();
 				try {
 					loginController.createUser(LoginUserTypeDTO.Email, nick, pass, mail);
+					 new ClientSignUpWindow(loginController, crController);
+					 dispose();
+				}catch (Exception e3) {
+					e3.printStackTrace();
+				}
+				
+				
+				
+			}
+		});
+		btnFacebookRegister.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nick = textNIck.getText();
+				String mail = textMail.getText();
+				//TODO
+				//Change
+				String pass = textPass.getText();
+				try {
+					loginController.createUser(LoginUserTypeDTO.Facebook, nick, pass, mail);
+					 new ClientSignUpWindow(loginController, crController);
+					 dispose();
+				}catch (Exception e3) {
+					e3.printStackTrace();
+				}
+				
+				
+				
+			}
+		});
+		
+	btnRegisterGoogle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nick = textNIck.getText();
+				String mail = textMail.getText();
+				//TODO
+				//Change
+				String pass = textPass.getText();
+				try {
+					loginController.createUser(LoginUserTypeDTO.Google, nick, pass, mail);
 					 new ClientSignUpWindow(loginController, crController);
 					 dispose();
 				}catch (Exception e3) {
