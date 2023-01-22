@@ -48,9 +48,8 @@ public class ClientSessionWindow extends JFrame {
 	private  JTextField textOwner;
 	private  JLabel lblDur;
 	private  JLabel lblStart;
-	private  JLabel lblEnd;
 	private  JTextField textDur;
-	private JTextField dateStart,dateEnd;
+	private JTextField dateStart;
 	
 	private JButton btnEnter;
 	
@@ -112,17 +111,6 @@ public class ClientSessionWindow extends JFrame {
 			dateStart= new JTextField();
 			panelCentre.add(dateStart);
 			
-			lblEnd = new JLabel("Insert the ending date:");
-			panelCentre.add(lblEnd);
-			
-			dateEnd = new JTextField();
-			panelCentre.add(dateEnd);
-			
-//			sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			Date dact = new Date(System.currentTimeMillis());
-//			calendarStart.getJCalendar().setMaxSelectableDate(dact);
-//			calendarEnd.getJCalendar().setMaxSelectableDate(dact);	
-//		
 			
 			lblDur = new JLabel("Insert the duration:");
 			panelCentre.add(lblDur);
@@ -146,21 +134,14 @@ public class ClientSessionWindow extends JFrame {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
-					Date end = new Date();
-					try {
-						 end=sdf.parse(dateEnd.getText());
-					} catch (ParseException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
+					
 					
 					long duration=Long.parseLong(textDur.getText());
-					//SessionDTO s = new SessionDTO();
+					
 					
 					try {
-						List<SessionDTO> newsessions = new ArrayList<>();
-						newsessions = crController.createSession(user, title, sport, distance, start, duration);
-						user.setSessions(newsessions);
+						crController.createSession(user, title, sport, distance, start, duration);
+					
 						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
@@ -170,7 +151,7 @@ public class ClientSessionWindow extends JFrame {
 					//TODO add info 
 					System.out.println("Session created");
 					setVisible(false);
-//					ClientMainWindow mainwin = new ClientMainWindow();
+
 					
 				}
 			});

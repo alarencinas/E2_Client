@@ -16,9 +16,9 @@ public class CrController {
 		this.serviceLocator= serviceLocator;
 	}
 	
-	public List<ChallengeDTO> getChallenges(String Sport){
+	public List<ChallengeDTO> getChallenges(){
 		try {
-			return this.serviceLocator.getService().getChallenges(Sport);
+			return this.serviceLocator.getService().getChallenges();
 			
 		}catch(RemoteException e) {
 			System.out.println("Error geting all challenges");
@@ -35,12 +35,12 @@ public class CrController {
 	public void DelChallenge(String title)throws RemoteException{
 		this.serviceLocator.getService().DelChallenge(title);
 	}
-	//REVISE THIS METHOD
-	public List <SessionDTO> createSession(UserDTO userDTO, String title , String sport, int distance, Date start, long duration)throws RemoteException{
-		return this.serviceLocator.getService().createSession(userDTO, title, sport, distance, start, duration);
+	
+	public void createSession(UserDTO userDTO, String title , String sport, int distance, Date start, long duration)throws RemoteException{
+		 this.serviceLocator.getService().createSession(userDTO, title, sport, distance, start, duration);
 	}
-	public UserDTO acceptChallenge(UserDTO userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
-		return this.serviceLocator.getService().acceptChallenge(userDTO, challengeAccepted);
+	public void acceptChallenge(UserDTO userDTO, ChallengeDTO challengeAccepted) throws RemoteException {
+		this.serviceLocator.getService().acceptChallenge(userDTO, challengeAccepted);
 	}
 	
 	

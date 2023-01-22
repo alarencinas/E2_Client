@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JDateChooser;
+
 
 
 import server.data.dto.ChallengeDTO;
@@ -40,8 +41,7 @@ public class ClientChallengeWindow extends JFrame {
 	private  JLabel lblTime;
 	private  JTextField textTime;
 	private JButton btnEnter;
-	private JDateChooser calendarStart;
-	private JDateChooser calendarEnd;
+	private JTextField start, end;
 	private SimpleDateFormat sdf;
 	private JLabel lblSport;
 	private JTextField textSport;
@@ -75,7 +75,7 @@ public class ClientChallengeWindow extends JFrame {
 			
 			panelCentre = new JPanel();
 			contentPane.add(panelCentre, BorderLayout.CENTER);
-			panelCentre.setLayout(new GridLayout(6, 2));
+			panelCentre.setLayout(new GridLayout(7, 2));
 			
 			lblName = new JLabel("Insert the name:");
 			panelCentre.add(lblName);
@@ -86,14 +86,14 @@ public class ClientChallengeWindow extends JFrame {
 			lblStart = new JLabel("Insert the starting date:");
 			panelCentre.add(lblStart);
 			
-			calendarStart = new JDateChooser();
-			panelCentre.add(calendarStart);
+			start = new JTextField();
+			panelCentre.add(start);
 			
 			lblEnd = new JLabel("Insert the ending date:");
 			panelCentre.add(lblEnd);
 			
-			calendarEnd = new JDateChooser();
-			panelCentre.add(calendarEnd);
+			end = new JTextField();
+			panelCentre.add(end);
 			
 			lblDist = new JLabel("Insert the distance:");
 			panelCentre.add(lblDist);
@@ -107,10 +107,6 @@ public class ClientChallengeWindow extends JFrame {
 			textTime = new JTextField();
 			panelCentre.add(textTime);
 			
-			sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date dact = new Date(System.currentTimeMillis());
-			calendarStart.getJCalendar().setMaxSelectableDate(dact);
-			calendarEnd.getJCalendar().setMaxSelectableDate(dact);	
 		
 			
 			lblOwner = new JLabel("Insert the owner:");
@@ -130,31 +126,30 @@ public class ClientChallengeWindow extends JFrame {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					sdf = new SimpleDateFormat("dd-MM-yyyy");
 					String name= textName.getText();
-					Date start = calendarStart.getDate();
-					Date end  = calendarEnd.getDate();
+					Date dstart = new Date();
+					Date dend  = new Date();
 					int dist = Integer.parseInt(textDist.getText());
 					float time = Float.parseFloat(textTime.getText());
 					String ownerName = textOwner.getText();
 					String sport = textSport.getText();
 					
-//					ChallengeDTO cDTO = new ChallengeDTO();
-//					cDTO.setDistance(dist);
-//					cDTO.setEnd(end);
-//					cDTO.setName(name);
-//					cDTO.setOwner(user);	
-//					cDTO.setStart(start);
-//					cDTO.setTime(time); 	
-//					cDTO.setSport(sport);	
-					
+					try {
+						dstart = sdf.parse(start.getText());
+						dend = sdf.parse(end.getText());
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					
 					try {
-						crController.createChallenge(user, ownerName, start, end, dist, time, sport);
+						crController.createChallenge(user, ownerName, dstart, dend, dist, time, sport);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					//TODO add info 
+				 
 					System.out.println("Challege created");
 					setVisible(false);
 					ClientMainWindow mainwin = new ClientMainWindow(user,crController,loginController);

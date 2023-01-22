@@ -108,25 +108,7 @@ public class ClientLoginWindow extends JFrame {
 				}catch (RemoteException e2) {
 					e2.printStackTrace();
 				}
-//				UserDTO usr = new UserDTO(); //TODO contrastar con BBDD y recuperar el usuario para pasarlselo a la ventana
-//				
-//				//TODO log in to menu windows
-//				String op = (String) comboLogin.getSelectedItem();
-//				LoginUserTypeDTO l;
-//				if(op=="Google") {
-//					l=LoginUserTypeDTO.Google;
-//				
-//				}else if(op=="Facebook"){
-//					l=LoginUserTypeDTO.Facebook;
-//				}else {
-//					l=LoginUserTypeDTO.Email;
-//				}
-//				
-//				lController.login(mail, pass, "",l);
-//				System.out.println("Succesfully Loged in");
-//				setVisible(false);
-//				ClientMainWindow mainwin = new ClientMainWindow(usr);
-//				mainwin.setVisible(true);
+
  catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -21,27 +21,8 @@ public class ClientMainWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnChallenge;
-	private JButton btnSession;
+	private JButton btnSession, btnShow;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ClientMainWindow frame = new ClientMainWindow(null, null, null);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ClientMainWindow(UserDTO user,CrController crController,LoginController loginController) {
 		setTitle("STRAVA MENU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,6 +42,9 @@ public class ClientMainWindow extends JFrame {
 		
 		 btnSession = new JButton("CREATE SESSION");
 		panel.add(btnSession);
+		
+		btnShow = new JButton("SHOW CHALLENGES");
+		panel.add(btnShow);
 		
 		JPanel panelSouth = new JPanel();
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
@@ -85,6 +69,26 @@ public class ClientMainWindow extends JFrame {
 				
 				ClientSessionWindow sessionwin = new ClientSessionWindow(user, crController, loginController);
 				sessionwin.setVisible(true);
+			}
+		});
+		btnExit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ClientLoginWindow wind = new ClientLoginWindow( loginController, crController);
+				wind.setVisible(true);
+			}
+			
+		});
+		
+		btnShow.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ShowChallengesWindow window = new ShowChallengesWindow(user, crController, loginController);
+				window.setVisible(true);
 			}
 		});
 		setVisible(true);
